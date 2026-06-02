@@ -1,0 +1,385 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>窗外是佛罗伦萨，桌上是死。如果今天的我远离一切，那是因为除了爱和仰望。我别无所能</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: #0a0a14;
+            color: #f0f0f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* 抽象背景图案 */
+        .background-art {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+        }
+        
+        .abstract-line {
+            position: absolute;
+            border: 1px solid rgba(30, 60, 114, 0.7);
+        }
+        
+        .abstract-shape {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(30, 60, 114, 0.5);
+        }
+        
+        .abstract-rect {
+            position: absolute;
+            border: 1px solid rgba(30, 60, 114, 0.6);
+        }
+        
+        /* 主要内容容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 标题样式 */
+        .page-title {
+            font-size: 1.8rem;
+            font-style: italic;
+            text-align: center;
+            color: #d0d0e0;
+            margin-bottom: 60px;
+            padding: 0 20px;
+            line-height: 1.4;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+        }
+        
+        /* 主要引文 */
+        .main-quote {
+            font-size: 2.2rem;
+            font-style: italic;
+            text-align: center;
+            color: #ffffff;
+            margin: 80px auto 60px;
+            max-width: 900px;
+            line-height: 1.5;
+            padding: 40px 30px;
+            position: relative;
+            background-color: rgba(10, 15, 30, 0.5);
+            border-radius: 2px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .main-quote::before, .main-quote::after {
+            content: '"';
+            font-size: 4rem;
+            color: rgba(30, 60, 114, 0.7);
+            position: absolute;
+        }
+        
+        .main-quote::before {
+            top: 0;
+            left: 10px;
+        }
+        
+        .main-quote::after {
+            bottom: -20px;
+            right: 10px;
+        }
+        
+        /* 中间内容区 */
+        .content-section {
+            margin: 80px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .subtitle {
+            font-size: 1.6rem;
+            text-align: center;
+            color: #d0d0e0;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .author-intro {
+            font-size: 2.8rem;
+            text-align: center;
+            color: #ffffff;
+            margin: 30px 0 60px;
+            font-weight: 300;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .author-intro::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(30, 60, 114, 0.8), transparent);
+        }
+        
+        /* 个人陈述部分 */
+        .personal-statements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .statement {
+            background-color: rgba(15, 20, 40, 0.5);
+            padding: 30px;
+            border-radius: 2px;
+            border-left: 3px solid rgba(30, 60, 114, 0.7);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .statement:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .statement-text {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: #e0e0e0;
+        }
+        
+        /* 页脚 */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 80px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .main-quote {
+                font-size: 1.8rem;
+                padding: 30px 20px;
+                margin: 60px auto 40px;
+            }
+            
+            .author-intro {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .personal-statements {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-quote {
+                font-size: 1.5rem;
+            }
+            
+            .author-intro {
+                font-size: 1.8rem;
+            }
+            
+            .page-title {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 抽象背景图案 -->
+    <div class="background-art" id="backgroundArt"></div>
+    
+    <div class="container">
+        <!-- 页面标题 -->
+        <h1 class="page-title">
+            窗外是佛罗伦萨，桌上是死。<br>如果今天的我远离一切，那是因为除了爱和仰望。<br>我别无所能
+        </h1>
+        
+        <!-- 主要引文 -->
+        <div class="main-quote">
+            我渐渐愿意把所有的悲沉、蒙昧、大痛、无明都化约到一种素朴的乐观上，我认为它是生命某种终极的境界。<br>你知，我知。
+        </div>
+        
+        <!-- 个人介绍部分 -->
+        <div class="content-section">
+            <h2 class="subtitle">在世界的尽头，希望能有一部分属于我的文字。</h2>
+            <div class="author-intro">"我是游昔灵"</div>
+            
+            <div class="personal-statements">
+                <div class="statement">
+                    <p class="statement-text">记住某一天某个时刻的我。那一瞬，光线斜照在书页上，窗外的梧桐叶轻轻摇动，时间仿佛凝固。我坐在那里，既是观察者也是被观察者，既是书写者也是被书写者。</p>
+                </div>
+                
+                <div class="statement">
+                    <p class="statement-text">无数个我拼凑成真实的我。清晨煮咖啡的我，深夜伏案的我，雨中漫步的我，阳光下眯起眼睛的我。每一个瞬间的我都是真实的碎片，拼凑出不断变化又始终如一的整体。</p>
+                </div>
+                
+                <div class="statement">
+                    <p class="statement-text">文字是我存在的痕迹，是抵抗遗忘的方式。在词语的缝隙间，我寻找那些无法言说的部分，那些在语言边缘闪烁的微光。写作是我与世界的对话，也是与自己的和解。</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 页脚 -->
+        <div class="footer">
+            <p>游昔灵的个人空间 | 文字是永恒的瞬间</p>
+            <p>© 2026 所有文字皆为心迹的投影</p>
+        </div>
+    </div>
+
+    <script>
+        // 创建抽象背景图案
+        document.addEventListener('DOMContentLoaded', function() {
+            const backgroundArt = document.getElementById('backgroundArt');
+            
+            // 创建深蓝色线条
+            for(let i = 0; i < 25; i++) {
+                const line = document.createElement('div');
+                line.className = 'abstract-line';
+                
+                // 随机位置和尺寸
+                const width = Math.random() * 300 + 50;
+                const height = 1;
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const rotation = Math.random() * 360;
+                
+                line.style.width = `${width}px`;
+                line.style.height = `${height}px`;
+                line.style.left = `${left}%`;
+                line.style.top = `${top}%`;
+                line.style.transform = `rotate(${rotation}deg)`;
+                line.style.opacity = 0.2 + Math.random() * 0.3;
+                
+                backgroundArt.appendChild(line);
+            }
+            
+            // 创建几何形状
+            for(let i = 0; i < 15; i++) {
+                const shapeType = Math.random() > 0.5 ? 'circle' : 'rect';
+                
+                if(shapeType === 'circle') {
+                    const circle = document.createElement('div');
+                    circle.className = 'abstract-shape';
+                    
+                    const size = Math.random() * 80 + 20;
+                    const left = Math.random() * 100;
+                    const top = Math.random() * 100;
+                    
+                    circle.style.width = `${size}px`;
+                    circle.style.height = `${size}px`;
+                    circle.style.left = `${left}%`;
+                    circle.style.top = `${top}%`;
+                    circle.style.opacity = 0.1 + Math.random() * 0.2;
+                    
+                    // 随机边框样式
+                    if(Math.random() > 0.5) {
+                        circle.style.borderStyle = 'dashed';
+                    }
+                    
+                    backgroundArt.appendChild(circle);
+                } else {
+                    const rect = document.createElement('div');
+                    rect.className = 'abstract-rect';
+                    
+                    const width = Math.random() * 100 + 30;
+                    const height = Math.random() * 100 + 30;
+                    const left = Math.random() * 100;
+                    const top = Math.random() * 100;
+                    const rotation = Math.random() * 360;
+                    
+                    rect.style.width = `${width}px`;
+                    rect.style.height = `${height}px`;
+                    rect.style.left = `${left}%`;
+                    rect.style.top = `${top}%`;
+                    rect.style.transform = `rotate(${rotation}deg)`;
+                    rect.style.opacity = 0.1 + Math.random() * 0.2;
+                    
+                    // 随机边框样式
+                    if(Math.random() > 0.5) {
+                        rect.style.borderStyle = 'dotted';
+                    }
+                    
+                    backgroundArt.appendChild(rect);
+                }
+            }
+            
+            // 添加背景动画效果
+            const lines = document.querySelectorAll('.abstract-line');
+            const shapes = document.querySelectorAll('.abstract-shape, .abstract-rect');
+            
+            // 鼠标移动时的视差效果
+            document.addEventListener('mousemove', (e) => {
+                const x = (e.clientX / window.innerWidth) * 20 - 10;
+                const y = (e.clientY / window.innerHeight) * 20 - 10;
+                
+                lines.forEach(line => {
+                    const speed = 0.5;
+                    line.style.transform += ` translate(${x * speed}px, ${y * speed}px)`;
+                });
+                
+                shapes.forEach(shape => {
+                    const speed = 0.2;
+                    shape.style.transform += ` translate(${x * speed}px, ${y * speed}px)`;
+                });
+            });
+            
+            // 添加文字淡入效果
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // 观察需要动画的元素
+            const animatedElements = document.querySelectorAll('.main-quote, .author-intro, .statement');
+            animatedElements.forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
